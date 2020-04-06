@@ -12,8 +12,18 @@ const routes = [
 			layout: 'main-layout',
 		},
 	},
+	{
+		path: '/posts/:id',
+		name: 'PostPage',
+		component: () => import('../views/Post/Post.vue'),
+		meta: {
+			layout: 'main-layout',
+		},
+	},
 ];
 
 export const router = new VueRouter({
+	mode: 'history',
+	base: process.env.BASE_URL,
 	routes,
 });
