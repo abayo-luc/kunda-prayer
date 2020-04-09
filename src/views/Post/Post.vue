@@ -138,7 +138,7 @@ export default {
     },
     getUrl() {
       const { id } = this.$route.params;
-      return `${this.$router.options.base}/posts/${id}`;
+      return `${process.env.VUE_APP_BASE_URL}/posts/${id}`;
     }
   },
   beforeCreate() {

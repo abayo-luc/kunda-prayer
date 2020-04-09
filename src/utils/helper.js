@@ -1,4 +1,3 @@
-import moment from 'moment';
 export const formatPostData = (data) =>
 	data.reduce(
 		(prev, current) => ({
@@ -6,8 +5,6 @@ export const formatPostData = (data) =>
 			[current.id]: {
 				...current,
 				description: current.content?.split('<br>')[0],
-				updatedAt: moment(current.updatedAt).format('lll'),
-				createdAt: moment(current.createdAt).format('lll'),
 			},
 		}),
 		{}
@@ -19,8 +16,6 @@ export const mapArrayToObject = (data) =>
 			...prev,
 			[current.id]: {
 				...current,
-				updatedAt: moment(current.updatedAt).format('lll'),
-				createdAt: moment(current.createdAt).format('lll'),
 			},
 		}),
 		{}
