@@ -1,5 +1,5 @@
 <template>
-  <div class="media mb-4">
+  <div class="media">
     <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt /> -->
     <div class="media-body">
       <div class="header">

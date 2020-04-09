@@ -1,5 +1,9 @@
 import axios from '../utils/fetch';
-import { FETCHING_SINGLE_POST, FETCHING_SINGLE_POST_SUCCESS } from './types';
+import {
+	FETCHING_SINGLE_POST,
+	FETCHING_SINGLE_POST_SUCCESS,
+	FETCHING_SINGLE_POST_FAILED,
+} from './types';
 
 const INITIAL_STATE = {
 	isLoading: false,
@@ -15,7 +19,7 @@ const actions = {
 			const { data } = await axios.get(`/posts/${id}`);
 			commit(FETCHING_SINGLE_POST_SUCCESS, data);
 		} catch (error) {
-			console.log(error);
+			commit(FETCHING_SINGLE_POST_FAILED);
 		}
 	},
 };
@@ -25,14 +29,16 @@ const mutations = {
 		state.post = data;
 	},
 	FETCHING_SINGLE_POST_SUCCESS: (state, data) => {
-		console.log(data);
 		state.isLoading = false;
 		state.post = data;
+	},
+	FETCHING_SINGLE_POST_FAILED: (state) => {
+		state.isLoading = false;
 	},
 };
 const getters = {
 	getPost: (state) => state.post,
-	isLoading: (state) => state.isLoading,
+	isLoading: (state) => state.isLoading && !state.post,
 };
 
 export default {
