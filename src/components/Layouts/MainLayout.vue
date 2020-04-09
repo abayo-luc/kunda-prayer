@@ -14,7 +14,7 @@
             <div class="card-body">
               A warm welcome at the home of poetry... Our intention is to speak out to your soul and mind,
               to erase the sadness, raise your energy, and inspire you to be more... Our poems are in all categories..
-              Right from Kunda a poet in Africa's heart, Rwanda of a thousand hills...
+              Right from Kunda a poet in Africa's heart, Rwanda of a thousand hills.
             </div>
           </div>
         </div>

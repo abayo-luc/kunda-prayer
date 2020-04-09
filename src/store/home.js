@@ -24,12 +24,12 @@ const actions = {
 			commit(FETCHING_ALL_POSTS_SUCCESS, { count, posts: data });
 		} catch (error) {
 			commit(FETCHING_ALL_POSTS_FAILED);
-			console.log(error);
 		}
 	},
 };
 const mutations = {
 	FETCHING_ALL_POSTS: (state) => {
+		if (state.data.posts.length) state.isInitalizing = true;
 		state.isLoading = true;
 	},
 	FETCHING_ALL_POSTS_SUCCESS: (state, { count, posts }) => {
@@ -44,7 +44,8 @@ const mutations = {
 };
 const getters = {
 	getAllPosts: (state) => state.data.posts,
-	isInitalizing: (state) => state.data.isInitalizing,
+	isInitalizing: (state) =>
+		state.isInitalizing || (state.data.posts.length && state.isLoading),
 };
 
 export default {

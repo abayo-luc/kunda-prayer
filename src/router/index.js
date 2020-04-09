@@ -14,7 +14,7 @@ const routes = [
 	},
 	{
 		path: '/posts',
-		name: 'HomePage',
+		name: 'PostsPage',
 		component: HomePage,
 		meta: {
 			layout: 'main-layout',
@@ -32,6 +32,6 @@ const routes = [
 
 export const router = new VueRouter({
 	mode: 'history',
-	base: process.env.BASE_URL,
+	base: process.env.VUE_APP_BASE_URL,
 	routes,
 });

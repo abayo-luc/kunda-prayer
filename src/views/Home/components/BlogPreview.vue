@@ -15,14 +15,9 @@
         <a href="#">Prayer K.</a>
       </div>
       <div class="col">
-        <div class="row float-right">
-          <div class v-if="post.comments && post.comments.length > 0">
-            <img src="../../../assets/images/comment.svg" alt="comment" class="icon img-fluid" />
-            <span>{{post.comments.length}}</span>
-          </div>
-          <div class="mx-2">
-            <img src="../../../assets/images/share.svg" alt="comment" class="icon img-fluid" />
-          </div>
+        <div class="float-right" v-if="post.comments && post.comments.length > 0">
+          <img src="../../../assets/images/comment.svg" alt="comment" class="icon img-fluid" />
+          <span>{{post.comments.length}}</span>
         </div>
       </div>
     </div>
