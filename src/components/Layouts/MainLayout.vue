@@ -2,9 +2,9 @@
   <div>
     <top-nav />
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-center">
         <slot />
-        <div class="col-md-4">
+        <div class="col-md-4 my-4">
           <div class="card my-4">
             <h5 class="card-header">Archive</h5>
             <categories />

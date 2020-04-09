@@ -1,13 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
+import HomePage from '../views/Home/HomePage.vue';
 Vue.use(VueRouter);
 
 const routes = [
 	{
 		path: '/',
 		name: 'HomePage',
-		component: () => import('../views/Home/HomePage.vue'),
+		component: HomePage,
+		meta: {
+			layout: 'main-layout',
+		},
+	},
+	{
+		path: '/posts',
+		name: 'HomePage',
+		component: HomePage,
 		meta: {
 			layout: 'main-layout',
 		},

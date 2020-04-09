@@ -1,17 +1,54 @@
 <template>
   <div class="media mb-4">
-    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt />
+    <!-- <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt /> -->
     <div class="media-body">
-      <h5 class="mt-0">Commenter Name</h5>Cras sit amet nibh libero, in gravida nulla. Nulla
-      vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra
-      turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+      <div class="header">
+        <h5 class="mt-0">{{username}}</h5>
+        <span class="datetime float-left">{{getDate}}</span>
+      </div>
+      <p>{{content}}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import moment from "moment";
+export default {
+  name: "Comment",
+  props: {
+    username: {
+      type: String,
+      default: "Unknown"
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    getDate() {
+      return moment(this.createdAt).format("lll");
+    }
+  }
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.datetime {
+  bottom: 0;
+  color: #ccc;
+  display: inline-block;
+  font-size: 13px;
+  font-style: italic;
+  margin-left: 8px;
+}
 </style>

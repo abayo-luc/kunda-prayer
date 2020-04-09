@@ -1,19 +1,30 @@
 <template>
   <div class="card mb-4">
-    <img class="card-img-top" :src="image" alt="Card image cap" v-if="image" />
+    <!-- <img class="card-img-top" :src="image" alt="Card image cap" v-if="image" /> -->
     <div class="card-body">
-      <h2 class="card-title">Post Title</h2>
-      <p
-        class="card-text"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-      <a href="#" class="btn btn-link">
+      <h2 class="card-title">{{post.title}}</h2>
+      <p class="card-text" v-html="post.description"></p>
+      <router-link :to="postUrl" class="btn btn-link">
         View more
         <img src="../../../assets/images/arrow.png" class="next ml-2" />
-      </a>
+      </router-link>
     </div>
-    <div class="card-footer text-muted">
-      Posted on January 1, 2020 by
-      <a href="#">Prayer K.</a>
+    <div class="row card-footer text-muted">
+      <div class="col">
+        Published: {{post.createdAt}} by
+        <a href="#">Prayer K.</a>
+      </div>
+      <div class="col">
+        <div class="row float-right">
+          <div class v-if="post.comments && post.comments.length > 0">
+            <img src="../../../assets/images/comment.svg" alt="comment" class="icon img-fluid" />
+            <span>{{post.comments.length}}</span>
+          </div>
+          <div class="mx-2">
+            <img src="../../../assets/images/share.svg" alt="comment" class="icon img-fluid" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -22,15 +33,24 @@
 export default {
   name: "BlogPreview",
   props: {
-    image: {
-      type: String,
-      required: false
+    post: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    postUrl() {
+      return `/posts/${this.post.id}`;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+img.icon {
+  height: 20px;
+  margin: 0px 5px;
+}
 img.next {
   max-width: 100%;
 }

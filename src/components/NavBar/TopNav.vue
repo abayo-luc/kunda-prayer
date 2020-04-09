@@ -1,7 +1,16 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Prayer's Cook</a>
+      <router-link class="navbar-brand" to="/">
+        <img
+          src="../../assets/images/logo.svg"
+          width="30"
+          height="30"
+          alt="lgo"
+          class="d-inline-block align-top"
+        />
+        Prayer's Cook
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -29,10 +38,10 @@
         </form>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <router-link class="nav-link" to="/">
               Home
               <span class="sr-only">(current)</span>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -94,11 +103,11 @@ export default {
   .form-inline .form-control {
     width: 0%;
     opacity: 0;
-    -webkit-transition: all 1.5s ease-in-out;
-    -moz-transition: all 1.5s ease-in-out;
-    -ms-transition: all 1.5s ease-in-out;
-    -o-transition: all 1.5s ease-in-out;
-    transition: all 1.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
   .form-control.open {
     width: 90%;

@@ -3,18 +3,26 @@
     <!-- Post Content Column -->
     <div class="col-lg-8 my-5">
       <!-- Title -->
-      <h1 class="mt-4">Post Title</h1>
+      <div class="card mb-4">
+        <h4 class="m-4" v-if="post">{{post.title}}</h4>
+        <div v-html="post.content" v-if="post" class="m-4"></div>
+      </div>
       <!-- Author -->
-      <p class="lead">
-        by
-        <a href="#">Prayer K.</a>
-      </p>
       <hr />
       <!-- Date/Time -->
-      <p>Posted on January 1, 2019 at 12:00 PM</p>
+      <div class="row px-2">
+        <div class="col">
+          <p class>Posted on {{publisedAt}}</p>
+        </div>
+        <div class="col">
+          <p class="float-right">
+            by
+            <a href="#" v-if="post">{{post.author.firstName}}</a>
+          </p>
+        </div>
+      </div>
       <hr />
       <!-- Post Content -->
-      <post-content />
       <!-- Comments Form -->
       <div class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
@@ -27,27 +35,48 @@
           </form>
         </div>
       </div>
-      <comment />
+      <ul class="list-unstyled mx-2">
+        <li v-for="(comment, index) in post.comments" :key="comment.id">
+          <hr class="dashed" v-if="index !== 0" />
+          <comment
+            :username="comment.username"
+            :content="comment.content"
+            :createdAt="comment.createdAt"
+          />
+        </li>
+      </ul>
     </div>
   </component>
 </template>
 
 <script>
+import moment from "moment";
+import { mapGetters } from "vuex";
 import Comment from "./components/Comment.vue";
-import PostContent from "./components/PostContent.vue";
 export default {
   name: "PostPage",
   components: {
-    Comment,
-    PostContent
+    Comment
   },
   computed: {
+    ...mapGetters({ post: "post/getPost", isLoading: "posts/isLoading" }),
     layout() {
       return this.$route.meta.layout || "main-layout";
+    },
+    publisedAt() {
+      if (this.post) {
+        return moment(this.post.createdAt).format("lll");
+      } else {
+        return "...";
+      }
     }
+  },
+  beforeCreate() {
+    const { id } = this.$route.params;
+    this.$store.dispatch("post/getPost", id);
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>
