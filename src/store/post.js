@@ -2,12 +2,12 @@ import axios from '../utils/fetch';
 import {
 	FETCHING_SINGLE_POST,
 	FETCHING_SINGLE_POST_SUCCESS,
-	FETCHING_SINGLE_POST_FAILED,
+	FETCHING_SINGLE_POST_FAILED
 } from './types';
 
 const INITIAL_STATE = {
 	isLoading: false,
-	post: null,
+	post: null
 };
 
 const actions = {
@@ -21,7 +21,7 @@ const actions = {
 		} catch (error) {
 			commit(FETCHING_SINGLE_POST_FAILED);
 		}
-	},
+	}
 };
 const mutations = {
 	FETCHING_SINGLE_POST: (state, data) => {
@@ -32,13 +32,13 @@ const mutations = {
 		state.isLoading = false;
 		state.post = data;
 	},
-	FETCHING_SINGLE_POST_FAILED: (state) => {
+	FETCHING_SINGLE_POST_FAILED: state => {
 		state.isLoading = false;
-	},
+	}
 };
 const getters = {
-	getPost: (state) => state.post,
-	isLoading: (state) => state.isLoading && !state.post,
+	getPost: state => state.post,
+	isLoading: state => state.isLoading && !state.post
 };
 
 export default {
@@ -46,5 +46,5 @@ export default {
 	state: INITIAL_STATE,
 	actions,
 	mutations,
-	getters,
+	getters
 };
