@@ -4,13 +4,13 @@
       <div class="col-lg-6">
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="#">All</a>
+            <router-link to="/posts">All</router-link>
           </li>
           <li>
-            <a href="#">Poems</a>
+            <router-link to="/posts?category=poem">Poem</router-link>
           </li>
           <li>
-            <a href="#">Articles</a>
+            <router-link to="/posts?category=article">Article</router-link>
           </li>
         </ul>
       </div>
