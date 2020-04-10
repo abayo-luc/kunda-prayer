@@ -11,7 +11,7 @@
     </div>
     <div class="row card-footer text-muted">
       <div class="col">
-        Published: {{post.createdAt}} by
+        Published: {{publishedAt}} by
         <a href="#">Prayer K.</a>
       </div>
       <div class="col">
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "BlogPreview",
   props: {
@@ -36,6 +37,9 @@ export default {
   computed: {
     postUrl() {
       return `/posts/${this.post.id}`;
+    },
+    publishedAt() {
+      return moment(this.post.createdAt).format("ll");
     }
   }
 };
