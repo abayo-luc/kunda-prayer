@@ -9,29 +9,37 @@ const routes = [
 		name: 'HomePage',
 		component: HomePage,
 		meta: {
-			layout: 'main-layout',
-		},
+			layout: 'main-layout'
+		}
 	},
 	{
 		path: '/posts',
 		name: 'PostsPage',
 		component: HomePage,
 		meta: {
-			layout: 'main-layout',
-		},
+			layout: 'main-layout'
+		}
 	},
 	{
 		path: '/posts/:id',
 		name: 'PostPage',
 		component: () => import('../views/Post/Post.vue'),
 		meta: {
-			layout: 'main-layout',
-		},
+			layout: 'main-layout'
+		}
 	},
+	{
+		path: '/about',
+		name: 'AboutPage',
+		component: () => import('../views/Other/AboutPage.vue'),
+		meta: {
+			layout: 'basic-layout'
+		}
+	}
 ];
 
 export const router = new VueRouter({
 	mode: 'history',
 	base: '/',
-	routes,
+	routes
 });

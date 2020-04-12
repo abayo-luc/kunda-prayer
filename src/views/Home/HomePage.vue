@@ -16,6 +16,7 @@
           </div>
         </div>
         <blog-preview v-for="(post, key) of posts" :key="key" :post="post" />
+        <empty-data v-if="Object.keys(posts).length === 0 && !isInitializing && !isPaginating" />
         <home-loader v-if="isPaginating" />
         <div class="col center mb-4" v-if="!isPaginating && totalPage > 0">
           <button
@@ -36,12 +37,13 @@
 import { mapGetters } from "vuex";
 import BlogPreview from "./components/BlogPreview.vue";
 import HomeLoader from "../../components/Loaders/HomeLoader.vue";
-
+import EmptyData from "./components/EmptyData.vue";
 export default {
   name: "HomePage",
   components: {
     BlogPreview,
-    HomeLoader
+    HomeLoader,
+    EmptyData
   },
   data() {
     return {
