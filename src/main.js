@@ -6,10 +6,12 @@ import App from './App.vue';
 import store from './store';
 import { router } from './router';
 import MainLayout from './components/Layouts/MainLayout.vue';
+import BasicLayout from './components/Layouts/BasicLayout.vue';
 import GSignInButton from 'vue-google-signin-button';
 
 Vue.config.productionTip = false;
 Vue.component('main-layout', MainLayout);
+Vue.component('basic-layout', BasicLayout);
 Vue.use(Notifications);
 Vue.use(SocialSharing);
 Vue.use(GSignInButton);

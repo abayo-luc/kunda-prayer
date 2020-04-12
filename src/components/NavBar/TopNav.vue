@@ -50,18 +50,21 @@
           </div>
         </form>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <router-link class="nav-link" to="/">
+          <li class="nav-item" :class="{active: currentPage === 'home' }">
+            <router-link class="nav-link" to="/" >
               Home
-              <span class="sr-only">(current)</span>
+              <span class="sr-only" v-if="currentPage === 'home'">(current)</span>
             </router-link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+          <li class="nav-item" :class="{active: currentPage === 'about' }">
+            <router-link class="nav-link" to="/about">
+            About
+            <span class="sr-only" v-if="currentPage === 'about'">(current)</span>
+            </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -79,7 +82,19 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ searchQuery: "home/searchQuery" })
+    ...mapGetters({ searchQuery: "home/searchQuery" }),
+    currentPage(){
+      switch (this.$route.name) {
+        case 'HomePage':
+            return 'home'
+        case 'PostsPage':
+            return 'home'
+        case 'AboutPage':
+            return 'about'
+        default:
+            return ''
+      }
+    }
   },
   created() {
     this.isOpen = this.searchQuery.length > 0;
