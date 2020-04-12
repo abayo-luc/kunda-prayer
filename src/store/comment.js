@@ -52,7 +52,6 @@ const mutations = {
 	FETCHING_POST_COMMENTS_SUCCESS: (state, comments) => {
 		state.isFetching = false;
 		state.comments = comments;
-		// console.log(Object(comments));
 	},
 	FETCHING_POST_COMMENTS_FAILED: state => {
 		state.isFetching = false;

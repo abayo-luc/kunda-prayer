@@ -192,6 +192,7 @@ export default {
   },
   beforeCreate() {
     const { id } = this.$route.params;
+    this.$store.dispatch("home/clearSearch");
     this.$store.dispatch("post/getPost", id);
     this.$store.dispatch("comment/fetchComments", id);
   },

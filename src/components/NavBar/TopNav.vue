@@ -28,11 +28,24 @@
             <input
               type="search"
               class="form-control mr-sm-2"
-              :class="{open: isOpen}"
+              :class="{open: isOpen || searchQuery}"
+              @input="handleInputChange"
+              :value="searchQuery"
               placeholder="Search..."
             />
             <button type="button" class="btn btn-light d-none d-lg-block">
-              <img src="../../assets/images/search.svg" alt="S" @click="isOpen = !isOpen" />
+              <img
+                src="../../assets/images/search.svg"
+                alt="Search"
+                @click="isOpen = true"
+                v-if="!isOpen"
+              />
+              <img
+                src="../../assets/images/forward.svg"
+                alt="Close"
+                @click="clearSearch"
+                v-if="isOpen"
+              />
             </button>
           </div>
         </form>
@@ -56,12 +69,44 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "TopNav",
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      typeTimer: null
     };
+  },
+  computed: {
+    ...mapGetters({ searchQuery: "home/searchQuery" })
+  },
+  created() {
+    this.isOpen = this.searchQuery.length > 0;
+  },
+  methods: {
+    handleInputChange(e) {
+      const { value } = e.target;
+      if (this.typeTimer) {
+        clearTimeout(this.typeTimer);
+        this.typeTimer = null;
+      }
+      this.typeTimer = setTimeout(() => {
+        this.$store.dispatch("home/searchPosts", { search: value });
+        if (
+          this.$route &&
+          !["HomePage", "PostsPage"].includes(this.$route.name)
+        ) {
+          this.$router.push({ name: "PostsPage" });
+        }
+      }, 500);
+    },
+    clearSearch() {
+      this.isOpen = false;
+      if (this.searchQuery.length > 0) {
+        this.$store.dispatch("home/clearSearch");
+      }
+    }
   }
 };
 </script>
