@@ -1,3 +1,4 @@
+import { router } from '../router';
 import axios from '../utils/fetch';
 import { formatPostData } from '../utils/helper';
 import {
@@ -40,10 +41,16 @@ const actions = {
 	allPosts: async ({ commit }, { search, page = 1 } = {}) => {
 		commit(FETCHING_ALL_POSTS);
 		try {
+			const {
+				query: { category, year }
+			} = router.history.current;
 			let URL = `/posts?limit=5&page=${page}`;
-			if (search) {
-				URL = `${URL}&search=${search}`;
-			}
+			if (search) URL = `${URL}&search=${search}`;
+
+			if (category) URL = `${URL}&category=${category}`;
+
+			if (year) URL = `${URL}&year=${year}`;
+
 			const { count, posts } = await axios.get(URL);
 			const data = formatPostData(posts);
 			commit(FETCHING_ALL_POSTS_SUCCESS, { count, posts: data });
@@ -70,7 +77,7 @@ const mutations = {
 	},
 	FETCHING_ALL_POSTS_SUCCESS: (state, { count, posts }) => {
 		if (!state.isSearching && !state.isPaginating) {
-			state.data = { count, posts: { ...posts } };
+			state.data = { count, posts };
 			state.allPosts = { count, posts };
 		} else if (state.isPaginating) {
 			state.data = {
@@ -94,7 +101,7 @@ const getters = {
 	getAllPosts: state => state.data.posts,
 	isInitalizing: state =>
 		state.isInitalizing ||
-		(state.data.posts.length && state.isLoading) ||
+		(Object.keys(state.data.posts).length && state.isLoading) ||
 		state.isSearching,
 	searchQuery: state => state.searchQuery.trim(),
 	totalPage: state => Math.ceil(state.data.count / 5),
