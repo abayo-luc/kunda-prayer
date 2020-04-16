@@ -9,7 +9,7 @@
           alt="lgo"
           class="d-inline-block align-top"
         />
-        Prayer's Cook
+        Kundacooks
       </router-link>
       <button
         class="navbar-toggler"
@@ -51,15 +51,15 @@
         </form>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" :class="{active: currentPage === 'home' }">
-            <router-link class="nav-link" to="/" >
+            <router-link class="nav-link" to="/">
               Home
               <span class="sr-only" v-if="currentPage === 'home'">(current)</span>
             </router-link>
           </li>
           <li class="nav-item" :class="{active: currentPage === 'about' }">
             <router-link class="nav-link" to="/about">
-            About
-            <span class="sr-only" v-if="currentPage === 'about'">(current)</span>
+              About
+              <span class="sr-only" v-if="currentPage === 'about'">(current)</span>
             </router-link>
           </li>
           <!-- <li class="nav-item">
@@ -83,16 +83,16 @@ export default {
   },
   computed: {
     ...mapGetters({ searchQuery: "home/searchQuery" }),
-    currentPage(){
+    currentPage() {
       switch (this.$route.name) {
-        case 'HomePage':
-            return 'home'
-        case 'PostsPage':
-            return 'home'
-        case 'AboutPage':
-            return 'about'
+        case "HomePage":
+          return "home";
+        case "PostsPage":
+          return "home";
+        case "AboutPage":
+          return "about";
         default:
-            return ''
+          return "";
       }
     }
   },

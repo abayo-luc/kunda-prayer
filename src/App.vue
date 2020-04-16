@@ -8,7 +8,7 @@
 <script>
 export default {
   name: "App",
-  beforeCreate() {
+  created() {
     this.$store.dispatch("data/fetchCategories");
   }
 };

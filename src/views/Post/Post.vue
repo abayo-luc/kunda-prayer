@@ -196,6 +196,10 @@ export default {
     this.$store.dispatch("post/getPost", id);
     this.$store.dispatch("comment/fetchComments", id);
   },
+  created() {
+    const { id } = this.$route.params;
+    this.$store.dispatch("data/recordPostView", id);
+  },
   methods: {
     saveAnonymously() {
       const username = "Anonymous";
