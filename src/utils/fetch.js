@@ -4,8 +4,8 @@ const defaultOptions = {
 	headers: {
 		'Content-Type': 'application/json; charset=utf-8',
 		'Access-Control-Allow-Origin': '*',
-		Accept: 'application/json',
-	},
+		Accept: 'application/json'
+	}
 };
 
 class Fetch {

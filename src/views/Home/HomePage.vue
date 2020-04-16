@@ -5,7 +5,9 @@
         <home-loader v-for="loader in loaders" :key="loader" />
       </div>
       <div class="container-fluid" v-else>
-        <h4 class="my-4 text-center">Home of Poetry</h4>
+        <h4 class="my-4 text-center">
+          <em>Home of Poetry</em>
+        </h4>
         <div class="post-filter-message" v-if="searchQuery">
           <div class="col-8">
             Showing posts matching the search for
