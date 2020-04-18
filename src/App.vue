@@ -16,4 +16,17 @@ export default {
 
 <style lang="scss">
 @import "./assets/styles/main.scss";
+body{
+  padding-top: 56px;
+  color: transparentize($color: #fafafa, $amount: 0.2);
+  background: url('./assets/images/bg001.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#app{
+  background-color: transparentize($color: #000000, $amount: 0.3);
+}
+
 </style>
