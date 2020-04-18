@@ -250,4 +250,8 @@ export default {
 .icon {
   height: 20px !important;
 }
+.form-control{
+  background-color: transparent;
+  color: #fafafa
+}
 </style>

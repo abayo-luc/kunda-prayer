@@ -1,20 +1,24 @@
 <template>
   <component :is="layout">
     <div class="col-md-8 page">
+      <div class="home-header">
+        <h4 class="text-center main-header">
+         The Shared Pen
+        </h4>
+      </div>
       <div class="loader" v-if="isInitializing">
         <home-loader v-for="loader in loaders" :key="loader" />
       </div>
+
       <div class="container-fluid" v-else>
-        <h4 class="my-4 text-center">
-          <em>Home of Poetry</em>
-        </h4>
+
         <div class="post-filter-message" v-if="searchQuery">
           <div class="col-8">
             Showing posts matching the search for
             <span class="primary-text">{{searchQuery}}</span>
           </div>
           <div class="col-4">
-            <button class="btn custom-btn float-right" @click="viewAll">SHOW ALL</button>
+            <button class="btn custom-btn float-right" @click="viewAll"><span class="text-gray">SHOW ALL</span></button>
           </div>
         </div>
         <blog-preview v-for="(post, key) of posts" :key="key" :post="post" />
@@ -109,5 +113,19 @@ export default {
   padding-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+.main-header{
+  color: #ffffff;
+  font: bold 45px Roboto, sans-serif;
+  line-height: normal;
+  margin: 0 0 13px 0;
+  text-align: center;
+  width: 100%;
+}
+.home-header{
+  margin: 2.5rem 0.5rem;
+}
+.text-gray{
+  color: #ccc
 }
 </style>

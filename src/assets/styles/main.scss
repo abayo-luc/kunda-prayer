@@ -6,14 +6,14 @@ $theme-colors: (
 );
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
-body {
-	padding-top: 56px;
-	background: #2a2148;
-	color: transparentize($color: #fafafa, $amount: 0.2);
-	background: -webkit-linear-gradient(45deg, #1f1834 0%, #362e50 100%);
-	background: -o-linear-gradient(45deg, #1f1834 0%, #141023 100%);
-	background: linear-gradient(45deg, #1f1834 0%, #141023 100%);
-}
+// body {
+// 	padding-top: 56px;
+// 	background: #2a2148;
+// 	color: transparentize($color: #fafafa, $amount: 0.2);
+// 	background: -webkit-linear-gradient(45deg, #1f1834 0%, #362e50 100%);
+// 	background: -o-linear-gradient(45deg, #1f1834 0%, #141023 100%);
+// 	background: linear-gradient(45deg, #1f1834 0%, #141023 100%);
+// }
 
 .card {
 	background: #141023;
@@ -34,6 +34,7 @@ body {
 }
 
 .page {
+	margin-top: 2.5rem;
 	min-height: 100vh;
 }
 
