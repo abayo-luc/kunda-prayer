@@ -3,7 +3,7 @@
     <div class="container">
       <p
         class="m-0 text-center text-white"
-      >Copyright &copy; Kunda's Cook {{new Date().getFullYear()}}</p>
+      >Copyright &copy; KundaCooks {{new Date().getFullYear()}}</p>
     </div>
   </footer>
 </template>

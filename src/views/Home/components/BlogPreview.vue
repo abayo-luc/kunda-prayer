@@ -12,7 +12,7 @@
     <div class="row card-footer text-muted">
       <div class="col">
         Published: {{publishedAt}} by
-        <a href="#">Prayer K.</a>
+        <a href="#">{{post.author.firstName}}</a>
       </div>
       <div class="col">
         <div class="float-right" v-if="post.comments && post.comments.length > 0">
@@ -52,5 +52,6 @@ img.icon {
 }
 img.next {
   max-width: 100%;
+  height: 0.8rem;
 }
 </style>

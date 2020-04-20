@@ -106,7 +106,7 @@ export default {
   width: 100%;
 }
 .primary-text {
-  color: #dd22d0;
+  color: #bb86fc;
 }
 .custom-btn {
   margin-top: 0;
