@@ -66,7 +66,7 @@ export default {
 }
 li.category-item.active {
   a {
-    color: #dd22d0;
+    color: #bb86fc;
   }
 }
 </style>

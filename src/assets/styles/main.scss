@@ -1,8 +1,9 @@
-$primary: #dd22d0;
+$primary: #bb86fc;
 $theme-colors: (
-	'primary': #dd22d0,
-	'danger': #ff4136,
-	'dark': #141023,
+	'primary': #bb86fc,
+	'danger': #cf6679,
+	'dark': #121212,
+	'secondary': #6c757d,
 );
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
@@ -16,17 +17,17 @@ $theme-colors: (
 // }
 
 .card {
-	background: #141023;
+	background: #121212;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 5px;
-	border: 0.5px solid transparentize($color: #292046, $amount: 0.8);
+	border: 0.5px solid transparentize($color: #4a4e51, $amount: 0.8);
 }
 .card-header,
 .card-footer {
 	padding: 0.75rem 1.25rem;
 	margin-bottom: 0;
 	background-color: rgba(0, 0, 0, 0.02);
-	border-bottom: 0.5px solid transparentize($color: #292046, $amount: 0.8);
+	border-bottom: 0.5px solid transparentize($color: #4a4e51, $amount: 0.8);
 }
 
 .card-body {
