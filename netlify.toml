@@ -2,6 +2,7 @@
 package = "@netlify/plugin-sitemap"
   [plugins.inputs]
   buildDir = "public"
+  prettyURLs = false
 [[plugins]]
   package = "netlify-plugin-search-index"
     [plugins.inputs]
