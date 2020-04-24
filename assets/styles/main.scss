@@ -1,0 +1,54 @@
+$primary: #bb86fc;
+$theme-colors: (
+  'primary': #bb86fc,
+  'danger': #cf6679,
+  'dark': #121212,
+  'secondary': #6c757d
+);
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+body {
+  padding-top: 56px;
+  color: transparentize($color: #fafafa, $amount: 0.2);
+  background: url('../images/bg001.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#__nuxt {
+  background-color: transparentize($color: #000000, $amount: 0.3);
+}
+
+.card {
+  background: #121212;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border: 0.5px solid transparentize($color: #4a4e51, $amount: 0.8);
+}
+.card-header,
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-bottom: 0.5px solid transparentize($color: #4a4e51, $amount: 0.8);
+}
+
+.card-body {
+  color: transparentize($color: #fafafa, $amount: 0.2);
+}
+
+.page {
+  margin-top: 2.5rem;
+  min-height: 100vh;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(250, 250, 250, 0.5);
+  &.dashed {
+    border-top: 1px dashed rgba(250, 250, 250, 0.5);
+  }
+}
