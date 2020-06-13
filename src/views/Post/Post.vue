@@ -26,9 +26,9 @@
           <social-sharing
             :url="getUrl"
             :title="post.title"
-            :description="post.title"
+            :description="sharebleContent"
             :quote="post.title"
-            hashtags="TheKundacook, Kundaprayer, Poetinmaking"
+            hashtags="TheKundacook,Kundaprayer,Poetinmaking"
             twitter-user="GakundeP"
             inline-template
           >
@@ -90,7 +90,11 @@
           <form>
             <div class="form-group">
               <label for="exampleFormControlSelect1">Comment As:</label>
-              <select class="form-control" id="exampleFormControlSelect1" v-model="commentAs">
+              <select
+                class="form-control"
+                id="exampleFormControlSelect1"
+                v-model="commentAs"
+              >
                 <option value="Google">Google account</option>
                 <option value="Anonymous">Anonymous</option>
               </select>
@@ -111,25 +115,56 @@
               @error="onSignInError"
               class="btn btn-primary"
               v-if="!isSubmitting && commentAs === 'Google'"
-            >Submit</g-signin-button>
-            <button class="btn btn-primary" v-else-if="isSubmitting" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              >Submit</g-signin-button
+            >
+            <button
+              class="btn btn-primary"
+              v-else-if="isSubmitting"
+              type="button"
+              disabled
+            >
+              <span
+                class="spinner-grow spinner-grow-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
               Submitting...
             </button>
-            <button type="button" v-else class="btn btn-primary" @click="saveAnonymously">Submit</button>
+            <button
+              type="button"
+              v-else
+              class="btn btn-primary"
+              @click="saveAnonymously"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
 
       <ul class="list-unstyled mx-2" v-if="!isFetching && postComments">
-        <li v-for="(comment, index) in postComments" :key="comment.id">
-          <hr class="dashed" v-if="index !== 0" />
-          <comment
-            :username="comment.username"
-            :content="comment.content"
-            :createdAt="comment.createdAt"
-          />
+        <li v-for="(comment, key, index) in postComments" :key="comment.id">
+          <transition name="fade" mode="out-in">
+            <div v-show="index < 10 || showAll">
+              <hr class="dashed" v-if="index !== 0" />
+              <comment
+                :username="comment.username"
+                :content="comment.content"
+                :createdAt="comment.createdAt"
+              />
+            </div>
+          </transition>
         </li>
+        <div class="mt-3 more-section">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            @click="showAll = !showAll"
+            v-if="Object.values(postComments).length > 10"
+          >
+            {{ showAll ? "LESS" : "MORE" }} COMMENTS
+          </button>
+        </div>
       </ul>
       <ul class="list-unstyled mx-2" v-else>
         <li>
@@ -156,15 +191,16 @@ export default {
   components: {
     Comment,
     PostLoader,
-    SmallLoader
+    SmallLoader,
   },
   data() {
     return {
       googleSignInParams: {
-        client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID
+        client_id: process.env.VUE_APP_GOOGLE_CLIENT_ID,
       },
       commentContent: "",
-      commentAs: "Google"
+      commentAs: "Google",
+      showAll: false,
     };
   },
   computed: {
@@ -173,7 +209,7 @@ export default {
       isLoading: "post/isLoading",
       isSubmitting: "comment/isSubmitting",
       isFetching: "comment/isFetching",
-      postComments: "comment/getComments"
+      postComments: "comment/getComments",
     }),
     layout() {
       return this.$route.meta.layout || "main-layout";
@@ -188,7 +224,10 @@ export default {
     getUrl() {
       const { id } = this.$route.params;
       return `${process.env.VUE_APP_BASE_URL}/posts/${id}`;
-    }
+    },
+    sharebleContent() {
+      return `Hello there\nYou got a Minute or two?\nHere is a new poem for you ✍️ \n \n*${this.post.title}* \n \nPlease Remember to Comment, And share with your friends. !\nBlessings😊😊\n \n 👇🏾👇🏾\n`;
+    },
   },
   beforeCreate() {
     const { id } = this.$route.params;
@@ -219,7 +258,7 @@ export default {
         group: "app",
         type: "warn",
         title: "Error",
-        text: error.error
+        text: error.error,
       });
     },
     submitComment({ id, username, content }) {
@@ -228,18 +267,18 @@ export default {
         .then(() => {
           this.commentContent = "";
         })
-        .catch(err => {
+        .catch((err) => {
           const { error } = err;
           this.$notify({
             group: "app",
             type: "error",
             title: "Comment failed",
             text: error.content || "Oops, uknown issue occured. Try again !",
-            duration: 10000
+            duration: 10000,
           });
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -250,8 +289,26 @@ export default {
 .icon {
   height: 20px !important;
 }
-.form-control{
+.form-control {
   background-color: transparent;
-  color: #fafafa
+  color: #fafafa;
+}
+.more-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active in <2.1.8 */
+
+ {
+  opacity: 0;
 }
 </style>
